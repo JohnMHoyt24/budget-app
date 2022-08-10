@@ -1,9 +1,29 @@
 /*First, import the installed packages.*/
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 //Create an Express object.
 const app = express();
+const uri = ``; //Need to include address.
+
+async function connect(){
+    try{
+        mongoose.connect(uri);
+        console.log("Connection to MongoDB established.");
+    }
+    catch(error){
+        console.error(error);
+    }
+}
+
+connect();
+
+//Import the files from the routes folder.
+const envelopeRouter = require('./routes/envelope');
+
+//If a user enters '/envelopes' in the URL it will load everything from the file.
+app.use('/envelopes', exerciseRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
