@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 //Create an Express object.
 const app = express();
-const uri = ``; //Need to include address.
+
+//Connect to the database and log the connection status.
+const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PW}@cluster0.rxelvz9.mongodb.net/?retryWrites=true&w=majority`;
 
 async function connect(){
     try{
@@ -23,7 +25,7 @@ connect();
 const envelopeRouter = require('./routes/envelope');
 
 //If a user enters '/envelopes' in the URL it will load everything from the file.
-app.use('/envelopes', exerciseRouter);
+app.use('/envelopes', envelopeRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
