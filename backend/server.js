@@ -26,6 +26,7 @@ const envelopeRouter = require('./routes/envelope');
 
 //If a user enters '/envelopes' in the URL it will load everything from the file.
 app.use('/envelopes', envelopeRouter);
+app.use('/delete', envelopeRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

@@ -23,4 +23,16 @@ router.route('/envelopes').post((req, res) =>{
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/delete').delete((req, res) =>{
+    Member.findOneAndRemove({_id: req.params.id}, function(err, member){
+        if(!err && member){
+            console.log(member);
+            console.log("member successfully deleted");
+        } else{
+            console.log("error detected");
+        }
+        res.redirect("/");
+    });
+})
+
 module.exports = router;
